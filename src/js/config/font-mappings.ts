@@ -212,7 +212,7 @@ export const fontFamilyToUrl: Record<string, string> = {
   'Noto Sans Syriac':
     'https://rawcdn.githack.com/googlefonts/noto-fonts/ffebf8c1ee449e544955a7e813c54f9b73848eac/hinted/ttf/NotoSansSyriac/NotoSansSyriac-Regular.ttf',
   'Noto Sans':
-    'https://rawcdn.githack.com/googlefonts/noto-fonts/ffebf8c1ee449e544955a7e813c54f9b73848eac/hinted/ttf/NotoSans/NotoSans-Regular.ttf',
+    `${import.meta.env.BASE_URL}fonts/NotoSans-Regular.ttf`,
 };
 
 export function getFontUrlForFamily(fontFamily: string): string {

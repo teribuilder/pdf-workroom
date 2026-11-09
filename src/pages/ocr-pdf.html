@@ -259,6 +259,15 @@
               <i data-lucide="plus" class="faq-d-icon"></i>
             </summary>
             <div class="mt-4 space-y-4">
+              <div>
+                <label for="ocr-layout" class="block mb-1 text-xs font-medium text-gray-400">문서 배치</label>
+                <select id="ocr-layout" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
+                  <option value="6" selected>일반 문서 · 한 단으로 이어지는 본문</option>
+                  <option value="3">자동 분석 · 여러 단 또는 복잡한 배치</option>
+                  <option value="11">흩어진 글자 · 영수증, 안내 이미지</option>
+                </select>
+                <p class="text-xs text-gray-400 mt-2">줄이 빠지면 문서 배치를 바꿔 다시 인식하세요. 접수번호·금액·날짜는 원본과 대조하세요.</p>
+              </div>
               <!-- Resolution -->
               <div>
                 <label

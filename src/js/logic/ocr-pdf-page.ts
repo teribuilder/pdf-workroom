@@ -1,3 +1,4 @@
+import Tesseract from 'tesseract.js';
 import { tesseractLanguages } from '../config/tesseract-languages.js';
 import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
@@ -147,6 +148,8 @@ async function runOCR() {
   }
 
   const langString = selectedLangs.join('+');
+  const layoutValue = (document.getElementById('ocr-layout') as HTMLSelectElement | null)?.value;
+  const psm = layoutValue === '11' ? Tesseract.PSM.SPARSE_TEXT : layoutValue === '3' ? Tesseract.PSM.AUTO : Tesseract.PSM.SINGLE_BLOCK;
 
   const toolOptions = document.getElementById('tool-options');
   const ocrProgress = document.getElementById('ocr-progress');
@@ -159,6 +162,7 @@ async function runOCR() {
 
     const result = await performOcr(new Uint8Array(arrayBuffer), {
       language: langString,
+      psm,
       resolution: scale,
       binarize,
       whitelist,
