@@ -11,7 +11,7 @@ import {PdfEngine} from '../js/editcore/core.js';
 it('edits Korean existing text and preserves it after saving and reopening with the actual WASM engine',async()=>{
  const fontBytes=fs.readFileSync('public/fonts/NotoSansCJKkr-Regular.otf');
  const doc=await PDFDocument.create(); doc.registerFontkit(fontkit);
- const font=await doc.embedFont(fontBytes,{subset:true});
+ const font=await doc.embedFont(fontBytes,{subset:false});
  doc.addPage([595,842]).drawText('비긴업 금액 10000원',{x:60,y:740,size:18,font});
  const bytes=await doc.save();
  fs.mkdirSync('../evidence',{recursive:true});fs.writeFileSync('../evidence/korean-before.pdf',bytes);

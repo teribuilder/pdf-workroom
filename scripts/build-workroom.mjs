@@ -1,0 +1,11 @@
+import {spawnSync} from 'node:child_process';
+import fs from 'node:fs';
+const env={...process.env,SIMPLE_MODE:'true',VITE_DEFAULT_LANGUAGE:'ko',SITE_URL:'https://pdf.begin-up.com',ALLOW_INDEXING:'false'};
+const result=spawnSync('npm',['run','build'],{env,stdio:'inherit'});
+if(result.status!==0)process.exit(result.status||1);
+const config=JSON.parse(fs.readFileSync('vercel.json','utf8'));
+for(const key of ['framework','buildCommand','outputDirectory','installCommand'])delete config[key];
+Object.assign(config,{framework:null,buildCommand:'',installCommand:''});
+config.headers[0].headers.push({key:'X-Robots-Tag',value:'noindex, nofollow'});
+fs.writeFileSync('dist/vercel.json',JSON.stringify(config,null,2));
+console.log('Static workroom build ready in dist. No server functions or paid API keys.');
